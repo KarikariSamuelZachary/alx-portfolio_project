@@ -1,17 +1,16 @@
-const moongoose = require('moongoose');
-const Schema = moongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const ShortUrlScema = new Schema({
+const ShortUrlSchema = new Schema({
     url: {
         type: String,
         required: true
     },
-
     shortId: {
         type: String,
         required: true
     }
 });
 
-const ShortUrl = moongoose.model('ShortUrl', ShortUrlScema);
-
+const ShortUrl = mongoose.model('shortUrl', ShortUrlSchema);
+module.exports = ShortUrl;
