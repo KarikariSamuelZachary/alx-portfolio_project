@@ -1,6 +1,6 @@
 # URL Shortener
 
-![URL Shortener Banner](https://via.placeholder.com/1200x300?text=URL+Shortener) <!-- You can replace this placeholder URL with an actual banner image URL -->
+![URL Shortener Banner](https://via.placeholder.com/1200x300?text=URL+Shortener) <
 
 A simple and efficient URL shortener application built with Node.js, Express, and EJS. This tool allows you to convert long URLs into short, shareable links.
 
@@ -30,12 +30,12 @@ A simple and efficient URL shortener application built with Node.js, Express, an
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/url-shortener.git
+   git clone https://github.com/KarikariSamuelZachary/alx-portfolio_project.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd url-shortener
+   cd alx-portfolio_project
    ```
 
 3. Install dependencies:
@@ -74,18 +74,10 @@ A simple and efficient URL shortener application built with Node.js, Express, an
   - CSS3
   - EJS (Embedded JavaScript Templates)
 
-- **Database (Optional for URL storage)**:
-  - MongoDB or any database of your choice (integration coming soon).
+- **Database:
+  - MongoDB 
 
 ---
-
-## Screenshots
-
-### Homepage
-![Homepage Screenshot](https://via.placeholder.com/800x400?text=Homepage+Screenshot) <!-- Replace this placeholder with an actual screenshot -->
-
-### URL Shortening in Action
-![URL Shortening Screenshot](https://via.placeholder.com/800x400?text=Shortening+Screenshot) <!-- Replace this placeholder with an actual screenshot -->
 
 ---
 
@@ -120,8 +112,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 For questions or feedback, feel free to reach out:
 
-- **GitHub**: [your-username](https://github.com/your-username)
-- **Email**: your-email@example.com
+- **GitHub**: [Karikari Samuel](https://github.com/KarikariSamuelZachary)
+- **Email**: skarikaripresecghana@gmail.com
 
 ---
 
