@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Samuel's URL Shortener</title>
+</head>
+<body>
+    <h1>Samuel's URL Shortener</h1>
+    
+    <% if (locals.error) { %>
+    <p class="error">Invalid URL<%= error %></p>
+    <% } %>
+
+
+    <form action="/" method="POST">
+        <input type="url" name="url" id="url" placeholder="Enter a URL">
+        <input type="submit" value="create short URL">
+    </form>
+
+    <div class="short-url">
+        <% if (locals.short_url) { %>
+            <a href="<%= short_url %>"><%= short-url %></a>
+        <% } %>
+    </div>
+</body>
+</html> 
