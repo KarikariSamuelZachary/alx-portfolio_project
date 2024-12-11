@@ -1,0 +1,15 @@
+input[type='submit'] {
+    display:block;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family:'Times New Roman', Times, serif;}
+
+p.error {
+    color: red;   
+}
