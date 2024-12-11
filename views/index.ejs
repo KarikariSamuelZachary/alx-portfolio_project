@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Samuel's URL Shortener</title>
-</head>
+</head> 
 <body>
     <h1>Samuel's URL Shortener</h1>
     
     <% if (locals.error) { %>
-    <p class="error">Invalid URL<%= error %></p>
+    <p class="error"><%= error %></p>
     <% } %>
 
 
-    <form action="/" method="POST">
+    <form action="/" method="post">
         <input type="url" name="url" id="url" placeholder="Enter a URL">
-        <input type="submit" value="create short URL">
+        <input type="submit" value="create shortened URL">
     </form>
 
     <div class="short-url">
