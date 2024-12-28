@@ -3,8 +3,8 @@
  * @module app
  */
 const express = require('express');
-const shortid = require('shortid');
-const { createHttpError } = require('http-errors');
+const shortId = require('shortid');
+const createHttpError = require('http-errors');
 const mongoose = require('mongoose');
 const path = require('path');
 const ShortUrl = require('./models/mongoose');
@@ -18,13 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
  
 // Connect to the MongoDB database
-mongoose.connect('mongodb://localhost:27017/url=shortener', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-})
+mongoose.connect('mongodb://127.0.0.1:27017/url-shortener')
   .then(() => console.log('Connected to MongoDB'))
-  .catch(error => console.log('Error connecting...'));
+  .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
