@@ -50,7 +50,7 @@ A simple and efficient URL shortener application built with Node.js, Express, an
 
 5. Open your browser and visit:
    ```
-   http://localhost:3000
+   http://localhost:3500
    ```
 
 ---
