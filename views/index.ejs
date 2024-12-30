@@ -15,13 +15,13 @@
 
 
     <form action="/" method="post">
-        <input type="url" name="url" id="url" placeholder="Enter a URL">
-        <input type="submit" value="create shortened URL">
+        <input type="url" name="url" id="url" placeholder="Enter a URL" />
+        <input type="submit" value="create shortened URL" />
     </form>
 
     <div class="short-url">
         <% if (locals.short_url) { %>
-            <a href="<%= short_url %>"><%= short-url %></a>
+            <a href="<%= short_url %>"><%= short_url %> </a>
         <% } %>
     </div>
 </body>

@@ -2,8 +2,9 @@
  * The main application file.
  * @module app
  */
+
 const express = require('express');
-const shortId = require('shortid');
+const shortid = require('shortid');
 const createHttpError = require('http-errors');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -16,11 +17,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
- 
+
 // Connect to the MongoDB database
-mongoose.connect('mongodb://127.0.0.1:27017/url-shortener')
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((error) => console.error('Error connecting to MongoDB:', error));
+mongoose.connect('mongodb://127.0.0.1:27017/url-shortener', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => console.log('MongoDB connection successful'))
+  .catch((err) => console.error('MongoDB connection error:', err));
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
@@ -29,28 +32,28 @@ app.set('view engine', 'ejs');
 app.get('/', async (req, res, next) => {
   try {
     res.render('index');
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 });
 
-// Route for creating a new Short URL
+// Route for creating a new short URL
 app.post('/', async (req, res, next) => {
   try {
     const { url } = req.body;
     if (!url) {
       throw createHttpError.BadRequest('URL is required');
     }
-    const urlExists = await ShortUrl.findOne({ url });
-    if (urlExists) {
-      res.render('index', { short_url: `http://localhost:3500/${urlExists.shortId}` });
+    const existingUrl = await ShortUrl.findOne({ url });
+    if (existingUrl) {
+      res.render('index', { short_url: `http://localhost:3500/${existingUrl.shortId}` });
       return;
     }
-    const shortId = new ShortUrl({ url: url, shortId: shortid.generate() });
-    const result = await shortId.save();
-    res.render('index', { short_url: `http://localhost:3500/${result.shortId}` });
-  } catch (error) {
-    next(error);
+    const newShortUrl = new ShortUrl({ url, shortId: shortid.generate() });
+    const savedUrl = await newShortUrl.save();
+    res.render('index', { short_url: `http://localhost:3500/${savedUrl.shortId}` });
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -58,13 +61,13 @@ app.post('/', async (req, res, next) => {
 app.get('/:shortId', async (req, res, next) => {
   try {
     const { shortId } = req.params;
-    const result = await ShortUrl.findOne({ shortId });
-    if (!result) {
+    const shortUrl = await ShortUrl.findOne({ shortId });
+    if (!shortUrl) {
       throw createHttpError.NotFound('Short URL not found');
     }
-    res.redirect(result.url);
-  } catch (error) {
-    next(error);
+    res.redirect(shortUrl.url);
+  } catch (err) {
+    next(err);
   }
 });
 
@@ -80,5 +83,5 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-app.listen(3000, () => console.log('Server is running on port 3000'));
+app.listen(3500, () => console.log('Server is running on port 3500'));
 

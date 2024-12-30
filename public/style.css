@@ -2,12 +2,11 @@ input[type='submit'] {
     display:block;
     margin: 10px auto;
     padding: 4px 8px;
-    background-color: #4CAF50;
+    background-color: #564caf;
     color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family:'Times New Roman', Times, serif;}
+    border: 0px;
+    border-radius: 2px;
+    font-family:'Nunito', sans-serif;}
 
 p.error {
     color: red;   
