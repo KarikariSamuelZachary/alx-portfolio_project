@@ -86,7 +86,6 @@ app.get("/:shortId", async (req, res, next) => {
       throw createHttpError.NotFound("Short URL not found");
     }
 
-    // Increment clicks
     shortUrl.clicks += 1;
     await shortUrl.save();
 
