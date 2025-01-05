@@ -1,28 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Samuel's URL Shortener</title>
-</head> 
-<body>
-    <h1>Samuel's URL Shortener</h1>
-    
-    <% if (locals.error) { %>
-    <p class="error"><%= error %></p>
-    <% } %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <p class="subtitle">
+        Paste your long URL and get a shorter version instantly
+      </p>
 
+      <form action="/" method="post">
+        <div class="input-group">
+          <input
+            type="url"
+            name="url"
+            id="url"
+            placeholder="Enter your long URL here..."
+            required
+          />
+          <button type="submit">Shorten URL</button>
+        </div>
 
-    <form action="/" method="post">
-        <input type="url" name="url" id="url" placeholder="Enter a URL" />
-        <input type="submit" value="create shortened URL" />
-    </form>
-
-    <div class="short-url">
-        <% if (locals.short_url) { %>
-            <a href="<%= short_url %>"><%= short_url %> </a>
+        <% if (locals.error) { %>
+        <div class="error"><%= error %></div>
         <% } %>
+      </form>
+
+      <% if (locals.short_url) { %>
+      <div class="result-container visible">
+        <div class="short-url">
+          <a href="<%= short_url %>" target="_blank"><%= short_url %></a>
+          <button class="copy-btn" data-clipboard-text="<%= short_url %>">
+            Copy
+          </button>
+        </div>
+      </div>
+      <% } %>
     </div>
-</body>
-</html> 
+
+    <script>
+      // Initialize clipboard.js
+      new ClipboardJS(".copy-btn");
+
+      // Add feedback when copying
+      document
+        .querySelector(".copy-btn")
+        ?.addEventListener("click", function (e) {
+          const originalText = e.target.textContent;
+          e.target.textContent = "Copied!";
+          setTimeout(() => {
+            e.target.textContent = originalText;
+          }, 2000);
+        });
+    </script>
+  </body>
+</html>
