@@ -155,3 +155,52 @@ button:hover {
     width: 100%;
   }
 }
+
+.url-stats {
+  margin-top: 20px;
+  background: #f7fafc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.stat-item {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-item:last-child {
+  margin-bottom: 0;
+}
+
+.stat-label {
+  font-weight: 600;
+  color: #4a5568;
+  min-width: 100px;
+}
+
+.stat-value {
+  color: #2d3748;
+}
+
+.url-truncate {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+@media (max-width: 480px) {
+  .stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .url-truncate {
+    max-width: 100%;
+  }
+}

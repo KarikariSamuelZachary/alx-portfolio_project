@@ -39,6 +39,26 @@
             Copy
           </button>
         </div>
+        <div class="url-stats">
+          <div class="stat-item">
+            <span class="stat-label">Total Clicks:</span>
+            <span class="stat-value" id="click-count"
+              ><%= locals.clicks %></span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Original URL:</span>
+            <span class="stat-value url-truncate"
+              ><%= locals.original_url %></span
+            >
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Created:</span>
+            <span class="stat-value"
+              ><%= new Date(locals.created_at).toLocaleDateString() %></span
+            >
+          </div>
+        </div>
       </div>
       <% } %>
     </div>
@@ -57,6 +77,27 @@
             e.target.textContent = originalText;
           }, 2000);
         });
+
+      // Real-time click count updates
+      function updateClickCount() {
+        const shortUrl = document
+          .querySelector(".short-url a")
+          ?.getAttribute("href");
+        if (!shortUrl) return;
+
+        const shortId = shortUrl.split("/").pop();
+        fetch(`/api/stats/${shortId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("click-count").textContent = data.clicks;
+          })
+          .catch(console.error);
+      }
+
+      // Update click count every 30 seconds if there's a short URL displayed
+      if (document.querySelector(".short-url")) {
+        setInterval(updateClickCount, 30000);
+      }
     </script>
   </body>
 </html>
