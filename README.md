@@ -74,7 +74,7 @@ A simple and efficient URL shortener application built with Node.js, Express and
   - CSS3
   - EJS (Embedded JavaScript Templates)
 
-- **Database:
+- **Database**:
   - MongoDB 
 
 ---
