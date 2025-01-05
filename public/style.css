@@ -204,3 +204,59 @@ button:hover {
     max-width: 100%;
   }
 }
+
+.urls-list {
+  margin-top: 30px;
+}
+
+.urls-list h2 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.url-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.url-card:last-child {
+  margin-bottom: 0;
+}
+
+.url-card .short-url {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7fafc;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.url-card .url-stats {
+  margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  .urls-list h2 {
+    text-align: center;
+  }
+
+  .url-card {
+    padding: 15px;
+  }
+
+  .url-card .short-url {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .url-card .short-url a {
+    word-break: break-all;
+  }
+}
