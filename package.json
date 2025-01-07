@@ -1,5 +1,4 @@
 {
-  "author": "Karikari Samuel"
   "name": "url_shortener",
   "version": "1.0.0",
   "main": "index.js",
@@ -8,7 +7,7 @@
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Karikari Samuel",
   "license": "ISC",
   "description": "",
   "dependencies": {
