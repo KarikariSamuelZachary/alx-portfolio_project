@@ -1,7 +1,5 @@
 # URL Shortener
 
-![URL Shortener Banner](https://via.placeholder.com/1200x300?text=URL+Shortener) <
-
 A simple and efficient URL shortener application built with Node.js, Express and EJS. This tool allows you to convert long URLs into short, shareable links.
 
 ---
