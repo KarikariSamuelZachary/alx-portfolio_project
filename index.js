@@ -33,7 +33,8 @@ app.set("view engine", "ejs");
 // Main route
 app.get("/", async (req, res, next) => {
   try {
-    res.render("index");
+    const urls = await ShortUrl.find().sort({ createdAt: "desc" });
+    res.render("index", { urls });
   } catch (err) {
     next(err);
   }
@@ -49,11 +50,10 @@ app.post("/", async (req, res, next) => {
 
     const existingUrl = await ShortUrl.findOne({ url });
     if (existingUrl) {
+      const urls = await ShortUrl.find().sort({ createdAt: "desc" });
       res.render("index", {
-        short_url: `http://localhost:3500/${existingUrl.shortId}`,
-        clicks: existingUrl.clicks,
-        original_url: existingUrl.url,
-        created_at: existingUrl.createdAt,
+        urls,
+        error: "URL already shortened",
       });
       return;
     }
@@ -63,14 +63,10 @@ app.post("/", async (req, res, next) => {
       shortId: shortid.generate(),
       clicks: 0,
     });
-    const savedUrl = await newShortUrl.save();
+    await newShortUrl.save();
 
-    res.render("index", {
-      short_url: `http://localhost:3500/${savedUrl.shortId}`,
-      clicks: savedUrl.clicks,
-      original_url: savedUrl.url,
-      created_at: savedUrl.createdAt,
-    });
+    const urls = await ShortUrl.find().sort({ createdAt: "desc" });
+    res.render("index", { urls });
   } catch (err) {
     next(err);
   }
