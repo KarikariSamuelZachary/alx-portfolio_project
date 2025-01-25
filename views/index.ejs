@@ -5,10 +5,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>URL Shortener</title>
     <link rel="stylesheet" href="/style.css" />
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom right, #00b09b, #96c93d);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: #ffffff;
+        color: #333;
+        border-radius: 10px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 800px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      header {
+        margin-bottom: 1.5rem;
+        text-align: right;
+      }
+
+      header a {
+        color: #00b09b;
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 1rem;
+      }
+
+      header a:hover {
+        text-decoration: underline;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        color: #666;
+      }
+
+      .input-group {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+
+      input[type="url"] {
+        flex: 1;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+        transition: 0.3s ease;
+      }
+
+      input[type="url"]:focus {
+        border-color: #96c93d;
+        box-shadow: 0 0 5px rgba(150, 201, 61, 0.5);
+      }
+
+      button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        color: #fff;
+        background: #00b09b;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      button:hover {
+        background: #96c93d;
+      }
+
+      .urls-list {
+        margin-top: 2rem;
+        text-align: left;
+      }
+
+      .urls-list h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .url-card {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .short-url {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .short-url a {
+        color: #00b09b;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .short-url a:hover {
+        text-decoration: underline;
+      }
+
+      .short-url button {
+        background: #00b09b;
+        padding: 0.5rem 1rem;
+        color: #fff;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .short-url button:hover {
+        background: #96c93d;
+      }
+
+      .url-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .stat-item {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .error {
+        color: #e74c3c;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+      }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
   </head>
   <body>
     <div class="container">
+      <header>
+        <% if (user) { %>
+        <p>Welcome, <%= user.username %>! <a href="/logout">Logout</a></p>
+        <% } else { %>
+        <p><a href="/signin">Sign In</a> | <a href="/signup">Sign Up</a></p>
+        <% } %>
+      </header>
+
       <h1>URL Shortener</h1>
       <p class="subtitle">
         Paste your long URL and get a shorter version instantly
